@@ -1,6 +1,6 @@
 <?php
-// src/App/Entity/Eleve.php
-namespace App\Helper;
+// src/App/Entity/Helper.php
+namespace App\Helpers;
 
 class Helper
 {
@@ -10,7 +10,7 @@ class Helper
      * @param string $format
      * @return bool
      */
-    public function validateDate($date, $format = 'Y-m-d H:i:s')
+    public function validateDate(string $date, $format = 'Y-m-d H:i:s')
     {
         $d = \DateTime::createFromFormat($format, $date);
         return $d && $d->format($format) == $date;

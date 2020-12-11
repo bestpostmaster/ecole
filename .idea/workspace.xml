@@ -5,12 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/EleveController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/EleveController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/NoteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/NoteController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/NoteEleveController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/NoteEleveController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Eleve.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Eleve.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Note.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Note.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/NoteEleve.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/NoteEleve.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Helpers/Helper.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Helpers/Helper.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/NoteRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/NoteRepository.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -168,12 +163,22 @@
       <option name="presentableId" value="Default" />
       <updated>1607363733161</updated>
       <workItem from="1607363751597" duration="66430000" />
-      <workItem from="1607701764485" duration="8496000" />
+      <workItem from="1607701764485" duration="10306000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -193,7 +198,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/src/Controller/EleveController.php</url>
-          <line>105</line>
+          <line>106</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
@@ -218,17 +223,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/src/Controller/EleveController.php</url>
-          <line>18</line>
+          <line>19</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/src/Controller/NoteController.php</url>
-          <line>114</line>
+          <line>115</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/src/Controller/NoteController.php</url>
-          <line>109</line>
+          <line>110</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
