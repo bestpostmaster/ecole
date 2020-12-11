@@ -39,7 +39,6 @@ class NoteController extends AbstractController
      */
 	public function deleteMark(Request $request): Response
     {
-		
 		if ($content = $request->getContent())
 		{
 			$params = json_decode($content, true);

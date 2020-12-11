@@ -93,7 +93,6 @@ class NoteEleveController extends AbstractController
      * Récupérer les associations Note <-> Eleve
      * @Route("/school/marks/associations", name="associations")
      */
-
     public function getAssociations(SerializerInterface $serializer): Response
     {
         $repository = $this -> getRepo('App:NoteEleve');
@@ -131,10 +130,10 @@ class NoteEleveController extends AbstractController
 			 if (!$notes = (($this -> getRepo('App:NoteEleve')) -> getMarks($id_eleve)))
 				throw new BadRequestHttpException("Cet élève n'a pas de notes ");
 
-            $noteCount = (($this -> getRepo('App:Note')) -> notesCount($id_eleve));
-            $avg = (($this -> getRepo('App:NoteEleve')) -> getStudentAvg($id_eleve));
-
-            throw new BadRequestHttpException('DEBUG : '.$avg);
+            if ($avg = (($this -> getRepo('App:NoteEleve')) -> getStudentAvg($id_eleve)))
+                return '{"avg":"'.$avg.'"}';
+            else
+                throw new BadRequestHttpException("Impossible de calculer la moyenne !");
 		}
 		else
 		{
