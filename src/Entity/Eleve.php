@@ -4,6 +4,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
@@ -37,9 +38,9 @@ class Eleve // The class name will be used to name exposed resources
 
     public function __construct(string $nom, string $prenom, string $dateNaiss)
     {
-		$this ->nom = $nom;
-		$this ->prenom = $prenom;
-		$this ->dateNaiss = $dateNaiss;
+            $this->nom = $nom;
+            $this->prenom = $prenom;
+            $this->dateNaiss = $dateNaiss;
     }
 	
 	// Les Getters ------------------------------------
@@ -83,6 +84,45 @@ class Eleve // The class name will be used to name exposed resources
 	public function setdateNaiss(string $val)
     {
         $this->dateNaiss = $val;
+    }
+
+    public function validateEleve()
+    {
+        $nom = $this->getNom();
+        $prenom = $this->getPrenom();
+        $dateNaiss = $this -> getdateNaiss();
+
+        $messageEmptyFields = 'Tous les champs(nom, prenom, dateNaiss) sont obligatoirs!';
+        if(!isset($nom) || !isset($prenom) || !isset($dateNaiss))
+            throw new BadRequestHttpException($messageEmptyFields);
+
+        if ($nom=='' || $prenom=='' || $dateNaiss=='')
+            throw new BadRequestHttpException($messageEmptyFields);
+
+        if (!$this -> validateDate($dateNaiss, 'd/m/Y'))
+            throw new BadRequestHttpException('Format de la date invalide. Utilisez le format : JJ/MM/AAAA');
+
+        if (!$this -> passedDate($dateNaiss))
+            throw new BadRequestHttpException('Date de naissance dans le futur !!! ');
+    }
+
+    /**
+     * Valider une date de naissance
+     * @param $date
+     * @param string $format
+     * @return bool
+     */
+    public function validateDate(string $date, $format = 'Y-m-d H:i:s'): ?bool
+    {
+        $d = \DateTime::createFromFormat($format, $date);
+        return $d && $d->format($format) == $date;
+    }
+
+    public function passedDate(string $date)
+    {
+        $dateNaiss = new \DateTime($date);
+        $current_date = new \DateTime();
+        return ($dateNaiss < $current_date);
     }
 
 }

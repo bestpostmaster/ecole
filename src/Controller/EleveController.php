@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 
+use App\Helpers\Helper;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -50,26 +51,22 @@ class EleveController extends AbstractController
      * Ajouter un élève
      * @Route("/school/students/add/", name="add_student")
      */
-	public function addStudent(Request $request, SerializerInterface $serializer): Response
+	public function addStudent(Request $request, SerializerInterface $serializer, Helper $helper): Response
     {
 		if ($content = $request->getContent())
 		{
-			$messageEmptyFields = 'Tous les champs(nom, prenom, dateNaiss) sont obligatoirs!';
 			$params = json_decode($content, true);
+            $newEleve = new Eleve(strtoupper($params['nom']), $params['prenom'], $params['dateNaiss']);
 
-			if(!isset($params['nom']) || !isset($params['prenom']) || !isset($params['dateNaiss']))
-				throw new BadRequestHttpException($messageEmptyFields);
-				
-			if ($params['nom']=='' || $params['prenom']=='' || $params['dateNaiss']=='')
-				throw new BadRequestHttpException($messageEmptyFields);
-				
-			if (!$this -> validateDate($params['dateNaiss'], 'd/m/Y'))
-				throw new BadRequestHttpException('Format de la date invalide. Utilisez le format : JJ/MM/AAAA');
+            try {
+                $newEleve -> validateEleve();
+            }
+            catch (Exception $e) {
+                throw new BadRequestHttpException($e->getMessage());
+            }
 				
 			if (($this -> getRepo('App:Eleve'))-> duplicateStudent($params['nom'], $params['prenom'], $params['dateNaiss']))
 				throw new BadRequestHttpException('Cet élève existe déjà');
-				
-			$newEleve = new Eleve(strtoupper($params['nom']), $params['prenom'], $params['dateNaiss']);
 
 			$em = $this->getDoctrine()->getManager();
 			$em->persist($newEleve);
