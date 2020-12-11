@@ -35,7 +35,7 @@ class Eleve // The class name will be used to name exposed resources
      */
     private $dateNaiss;
 
-    public function __construct($nom, $prenom, $dateNaiss)
+    public function __construct(string $nom, string $prenom, string $dateNaiss)
     {
 		$this ->nom = $nom;
 		$this ->prenom = $prenom;
@@ -49,38 +49,38 @@ class Eleve // The class name will be used to name exposed resources
         return $this->id;
     }
 	
-	public function getNom()
+	public function getNom(): ?string
     {
         return $this->nom;
     }
 	
-	public function getPrenom()
+	public function getPrenom(): ?string
     {
         return $this->prenom;
     }
 	
-	public function getdateNaiss()
+	public function getdateNaiss(): ?string
     {
         return $this->dateNaiss;
     }
 	
 	// Les Setters ------------------------------------
-    public function setId($val)
+    public function setId(int $val)
     {
         $this->id = $val;
     }
 
-	public function setNom($val)
+	public function setNom(string $val)
     {
         $this->nom = $val;
     }
 	
-	public function setPrenom($val)
+	public function setPrenom(string $val)
     {
         $this->prenom = $val;
     }
 	
-	public function setdateNaiss($val)
+	public function setdateNaiss(string $val)
     {
         $this->dateNaiss = $val;
     }

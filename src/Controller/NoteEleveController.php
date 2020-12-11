@@ -57,7 +57,7 @@ class NoteEleveController extends AbstractController
     }
 
     /**
-     * Ajouter une note à un élève
+     * Ajouter une note à un élève : une simple association id-eleve <-> id_note
      * @Route("/school/marks/simple-add-mark/", name="simple_add_mark")
      */
     public function simpleAdd(Request $request, SerializerInterface $serializer): Response

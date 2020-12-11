@@ -38,33 +38,33 @@ class Note // The class name will be used to name exposed resources
     }
     
 	// Les Getters -----------------------------------------
-	public function getId()
+	public function getId(): ?int
     {
         return $this->id;
     }
 
-	public function getValeur()
+	public function getValeur(): ?float
     {
         return $this->valeur;
     }
 	
-	public function getMatiere()
+	public function getMatiere(): ?string
     {
         return $this->matiere;
     }
 
 	// Les Setters -----------------------------------------
-	public function setId($val)
+	public function setId(int $val)
     {
         $this->id = $val;
     }
 
-	public function setValeur($val)
+	public function setValeur(string $val)
     {
         $this->valeur = $val;
     }
 	
-	public function setMatiere($val)
+	public function setMatiere(string $val)
     {
         $this->matiere = $val;
     }

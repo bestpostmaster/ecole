@@ -6,7 +6,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 use App\Entity\Note;
 
@@ -112,34 +111,18 @@ class NoteController extends AbstractController
 
 		if (!$notes)
 			throw new BadRequestHttpException('Aucune note dans la base de données');
-			
-		$sommeNotes = 0;
-		$noteCount = 0;
-		foreach ($notes as $index => $note) {
-			$sommeNotes += $note -> getValeur();
-			$noteCount++;
-		}
-		
-		if ($noteCount > 0) 
-		{
-			$moyenne = $sommeNotes / $noteCount;
-			return new Response(
-				'{"totalNotes":"'.$noteCount.'", "moyenne":"'.$moyenne.'"}'
-			);
-		}
+
+        if ($avg = (($this -> getRepo('App:Note')) -> getClassAvg()))
+            return '{"avg":"'.$avg.'"}';
 		else
-		{
-			return new Response(
-				'{"totalNotes":"'.$noteCount.'"}'
-			);
-		}
+            throw new BadRequestHttpException('Impossible de calculer la moyenne! ');
     }
 	
 	 /**
      * Récupérer le repository de Doctrine
      */
 	
-	private function getRepo ($repoName) 
+	private function getRepo (string $repoName)
 	{
 		$repository = $this
 		->getDoctrine()

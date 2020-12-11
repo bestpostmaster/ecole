@@ -4,11 +4,8 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
-use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Eleve;
-use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\SerializerInterface;
 
 class EleveController extends AbstractController
@@ -166,7 +163,7 @@ class EleveController extends AbstractController
      * Récupérer le repository de Doctrine
      */
 	
-	private function getRepo ($repoName) 
+	private function getRepo ($repoName)
 	{
 		$repository = $this
 		->getDoctrine()
@@ -176,15 +173,4 @@ class EleveController extends AbstractController
 		return $repository;
 	}
 
-    /**
-     * Valider une date de naissance
-     * @param $date
-     * @param string $format
-     * @return bool
-     */
-	private function validateDate($date, $format = 'Y-m-d H:i:s')
-	{
-		$d = \DateTime::createFromFormat($format, $date);
-		return $d && $d->format($format) == $date;
-	}
 }

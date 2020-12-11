@@ -53,7 +53,7 @@ class NoteRepository extends \Doctrine\ORM\EntityRepository
     /**
      * Calculer la moyenne de toutes les notes
      */
-    public function avgAllMarks ()
+    public function getClassAvg ()
     {
         $qb = $this ->createQueryBuilder('a');
         $qb ->select('avg(a.valeur)');

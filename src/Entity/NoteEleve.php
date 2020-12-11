@@ -38,23 +38,23 @@ class NoteEleve // The class name will be used to name exposed resources
     }
     
 	// Les Getters -----------------------------------------
-	public function getIdNote()
+	public function getIdNote(): ?int
     {
         return $this->id_note;
     }
 
-	public function getIdEleve()
+	public function getIdEleve(): ?int
     {
         return $this->id_eleve;
     }
 	
 	// Les Setters -----------------------------------------
-	public function setIdNote($id_note)
+	public function setIdNote(int $id_note)
     {
         $this->id_note = $id_note;
     }
 
-	public function setIdEleve($id_eleve)
+	public function setIdEleve(int $id_eleve)
     {
         $this->id_eleve = $id_eleve;
     }
