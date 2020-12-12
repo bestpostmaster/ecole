@@ -2,7 +2,9 @@
 // src/App/Entity/Helper.php
 namespace App\Helpers;
 
-class Helper
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
+class Helper extends AbstractController
 {
     /**
      * Valider une date de naissance
@@ -14,5 +16,18 @@ class Helper
     {
         $d = \DateTime::createFromFormat($format, $date);
         return $d && $d->format($format) == $date;
+    }
+
+    /**
+     * Récupérer le repository de Doctrine
+     */
+    public function getRepo ($repoName)
+    {
+        $repository = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository($repoName);
+
+        return $repository;
     }
 }

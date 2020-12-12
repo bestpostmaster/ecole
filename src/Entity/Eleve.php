@@ -117,7 +117,9 @@ class Eleve // The class name will be used to name exposed resources
         $d = \DateTime::createFromFormat($format, $date);
         return $d && $d->format($format) == $date;
     }
-
+    /**
+     * Vérifier si une date est passé
+     */
     public function passedDate(string $date)
     {
         $dateNaiss = new \DateTime($date);

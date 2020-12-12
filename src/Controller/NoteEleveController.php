@@ -11,6 +11,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 use App\Entity\NoteEleve;
 use App\Entity\Eleve;
 use App\Entity\Note;
+use App\Helpers\Helper;
 
 class NoteEleveController extends AbstractController
 {

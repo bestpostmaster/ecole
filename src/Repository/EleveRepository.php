@@ -13,8 +13,7 @@ class EleveRepository extends \Doctrine\ORM\EntityRepository
     /**
      * Vérifier si un élève existe, si oui le retourner
      */
-
-    public function studentExists ($id)
+    public function studentExists (int $id)
     {
         $eleve = $this->find($id);
         if ($eleve)
@@ -23,9 +22,9 @@ class EleveRepository extends \Doctrine\ORM\EntityRepository
             return false;
     }
 
-    public function duplicateStudent ($nom, $prenom, $dateNaiss)
+    public function duplicateStudent (string $nom, string $prenom, string $dateNaiss): bool
     {
-        if ($this->findBy(['nom' => $nom, 'prenom' => $prenom, 'dateNaiss' => $dateNaiss, ]))
+        if ($this->findBy(['nom' => $nom, 'prenom' => $prenom, 'dateNaiss' => $dateNaiss]))
             return true;
         else
             return false;
