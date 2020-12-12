@@ -22,6 +22,13 @@ class EleveRepository extends \Doctrine\ORM\EntityRepository
             return false;
     }
 
+    /**
+     * Vérifier si un élève est un doublon
+     * @param string $nom
+     * @param string $prenom
+     * @param string $dateNaiss
+     * @return bool
+     */
     public function duplicateStudent (string $nom, string $prenom, string $dateNaiss): bool
     {
         if ($this->findBy(['nom' => $nom, 'prenom' => $prenom, 'dateNaiss' => $dateNaiss]))

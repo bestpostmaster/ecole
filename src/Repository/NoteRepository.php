@@ -12,8 +12,10 @@ class NoteRepository extends \Doctrine\ORM\EntityRepository
 {
     /**
      * Vérifier si une note existe déjà
+     * @param int $id
+     * @return bool|object|null
      */
-    public function markExists ($id)
+    public function markExists (int $id)
     {
         if ($note = $this->find($id))
             return $note;
@@ -21,7 +23,13 @@ class NoteRepository extends \Doctrine\ORM\EntityRepository
             return false;
     }
 
-    public function duplicateMark ($valeur, $matiere)
+    /**
+     * Vérifier si une note est en double
+     * @param string $valeur
+     * @param string $matiere
+     * @return bool
+     */
+    public function duplicateMark (string $valeur, string $matiere)
     {
         if ($this->findBy(['valeur' => $valeur, 'matiere' => $matiere]))
             return true;
@@ -59,5 +67,4 @@ class NoteRepository extends \Doctrine\ORM\EntityRepository
         $qb ->select('avg(a.valeur)');
         return $qb->getQuery()->getSingleScalarResult();
     }
-
 }

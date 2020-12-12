@@ -13,10 +13,12 @@ use App\Helpers\Helper;
 
 class NoteController extends AbstractController
 {
-	
-	/**
+
+    /**
      * Lister toutes les notes
      * @Route("/school/marks/get-all/", name="get_all_marks")
+     * @param SerializerInterface $serializer
+     * @return Response
      */
     public function studentsMarks(SerializerInterface $serializer): Response
     {
@@ -34,9 +36,12 @@ class NoteController extends AbstractController
 		}
     }
 
-	/**
+    /**
      * Supprimer une note
      * @Route("/school/marks/delete/", name="delete_mark")
+     * @param Request $request
+     * @return Response
+     * @throws \Exception
      */
 	public function deleteMark(Request $request): Response
     {
@@ -67,10 +72,13 @@ class NoteController extends AbstractController
 			throw new \Exception('Erreur, requête vide!');
 
     }
-	
-	 /**
+
+    /**
      * Ajouter une note
      * @Route("/school/marks/add/", name="add-mark")
+     * @param Request $request
+     * @return Response
+     * @throws \Exception
      */
 	public function addMark(Request $request): Response
     {
@@ -103,11 +111,12 @@ class NoteController extends AbstractController
 		}
     }
 
-	 /**
+    /**
      * Calculer la moyenne de la classe
      * @Route("/school/marks/class-average", name="class_average")
-     */	
-	public function classAverage(Request $request): Response
+     * @return Response
+     */
+	public function classAverage(): Response
     {
         $notes = ($this -> getRepo('App:Note')) -> getAllMarks();
 
@@ -119,9 +128,11 @@ class NoteController extends AbstractController
 		else
             throw new BadRequestHttpException('Impossible de calculer la moyenne! ');
     }
-	
-	 /**
+
+    /**
      * Récupérer le repository de Doctrine
+     * @param string $repoName
+     * @return \Doctrine\Persistence\ObjectRepository
      */
 	
 	private function getRepo (string $repoName)

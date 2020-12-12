@@ -16,6 +16,10 @@ class EleveController extends AbstractController
     /**
      * Récupérer les informations d'un élève à l'aide de son identifiant
      * @Route("/school/students/get-one/{id}", name="get_student")
+     * @param Request $request
+     * @param SerializerInterface $serializer
+     * @param Helper $helper
+     * @return Response
      */
     public function getStudent(Request $request, SerializerInterface $serializer, Helper $helper): Response
     {
@@ -29,10 +33,14 @@ class EleveController extends AbstractController
 			throw $this->createNotFoundException('Elève inconnu !!');
 		}
     }
-	
-	/**
+
+    /**
      * Récupérer la liste de tous les élèves
      * @Route("/school/students/get-all/", name="get_students")
+     * @param Request $request
+     * @param SerializerInterface $serializer
+     * @param Helper $helper
+     * @return Response
      */
     public function getStudents(Request $request, SerializerInterface $serializer, Helper $helper): Response
     {
@@ -51,6 +59,10 @@ class EleveController extends AbstractController
     /**
      * Ajouter un élève
      * @Route("/school/students/add/", name="add_student")
+     * @param Request $request
+     * @param SerializerInterface $serializer
+     * @param Helper $helper
+     * @return Response
      */
 	public function addStudent(Request $request, SerializerInterface $serializer, Helper $helper): Response
     {
@@ -86,6 +98,10 @@ class EleveController extends AbstractController
     /**
      * Modifier un élève
      * @Route("/school/students/edit/", name="edit_student")
+     * @param Request $request
+     * @param SerializerInterface $serializer
+     * @param Helper $helper
+     * @return Response
      */
 	 
 	public function editStudent(Request $request, SerializerInterface $serializer, Helper $helper): Response
@@ -122,10 +138,15 @@ class EleveController extends AbstractController
 			throw new BadRequestHttpException('Erreur, requête vide!');
 		}
     }
-	
-	 /**
+
+    /**
      * Supprimer un élève
      * @Route("/school/students/delete/", name="delete_student")
+     * @param Request $request
+     * @param SerializerInterface $serializer
+     * @param Helper $helper
+     * @return Response
+     * @throws \Exception
      */
 	public function deleteStudent(Request $request, SerializerInterface $serializer, Helper $helper): Response
     {

@@ -11,9 +11,11 @@ namespace App\Repository;
 class NoteEleveRepository extends \Doctrine\ORM\EntityRepository
 {
     /**
-     * Supprimer toutes les notes d'un élève
+     * Supprimer toutes les notes d'un elève
+     * @param int $id_eleve
+     * @return array|bool
      */
-    public function removeStudentMarks ($id_eleve)
+    public function removeStudentMarks (int $id_eleve)
     {
         $qb = $this->createQueryBuilder('a');
         $qb->delete();
@@ -22,7 +24,12 @@ class NoteEleveRepository extends \Doctrine\ORM\EntityRepository
         return $query->getResult();
     }
 
-    public function removeAssoc ($id_note)
+    /**
+     * Supprimer toutes les associations d'une note
+     * @param int $id_note
+     * @return array|bool
+     */
+    public function removeAssoc (int $id_note)
     {
         $qb = $this->createQueryBuilder('a');
         $qb->delete();
@@ -31,7 +38,13 @@ class NoteEleveRepository extends \Doctrine\ORM\EntityRepository
         return $query->getResult();
     }
 
-    public function duplicateMarkStudent ($id_note, $id_eleve)
+    /**
+     * Vérifier si une note est en double
+     * @param int $id_note
+     * @param int $id_eleve
+     * @return array|bool
+     */
+    public function duplicateMarkStudent (int $id_note, int $id_eleve)
     {
         if ($this->findBy(['id_note' => $id_note, 'id_eleve' => $id_eleve]))
             return true;
@@ -40,10 +53,11 @@ class NoteEleveRepository extends \Doctrine\ORM\EntityRepository
     }
 
     /**
-     * Récupérer les notes d'un élève
+     * Récupérer toutes les notes d'un élève
+     * @param int $id_eleve
+     * @return array|bool
      */
-
-    public function getMarks ($id_eleve)
+    public function getMarks (int $id_eleve)
     {
         if ($notes = $this->findBy(['id_eleve' => $id_eleve]))
             return $notes;
@@ -53,8 +67,11 @@ class NoteEleveRepository extends \Doctrine\ORM\EntityRepository
 
     /**
      * Calculer la moyenne d'un élève
+     * @param int $idEleve
+     * @return bool|mixed
+     * @throws \Doctrine\DBAL\Exception
      */
-    public function getStudentAvg ($idEleve)
+    public function getStudentAvg (int $idEleve)
     {
         $conn = $this->getEntityManager()->getConnection();
         $sql = 'SELECT AVG(valeur)

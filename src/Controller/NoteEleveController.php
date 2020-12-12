@@ -15,9 +15,13 @@ use App\Helpers\Helper;
 
 class NoteEleveController extends AbstractController
 {
-	 /**
+    /**
      * Ajouter une note à un élève
      * @Route("/school/marks/add-to-student/", name="add-mark_to_student")
+     * @param Request $request
+     * @param SerializerInterface $serializer
+     * @return Response
+     * @throws \Exception
      */
 	public function addMarkStudent(Request $request, SerializerInterface $serializer): Response
     {
@@ -60,6 +64,9 @@ class NoteEleveController extends AbstractController
     /**
      * Ajouter une note à un élève : une simple association id-eleve <-> id_note
      * @Route("/school/marks/simple-add-mark/", name="simple_add_mark")
+     * @param Request $request
+     * @param SerializerInterface $serializer
+     * @return Response
      */
     public function simpleAdd(Request $request, SerializerInterface $serializer): Response
     {
@@ -93,6 +100,8 @@ class NoteEleveController extends AbstractController
     /**
      * Récupérer les associations Note <-> Eleve
      * @Route("/school/marks/associations", name="associations")
+     * @param SerializerInterface $serializer
+     * @return Response
      */
     public function getAssociations(SerializerInterface $serializer): Response
     {
@@ -110,9 +119,11 @@ class NoteEleveController extends AbstractController
         }
     }
 
-	 /**
+    /**
      * Calculer la moyenne d'un élève
      * @Route("/school/marks/student-average", name="student_average")
+     * @param Request $request
+     * @return Response
      */
 
 	public function studentAverage(Request $request): Response
